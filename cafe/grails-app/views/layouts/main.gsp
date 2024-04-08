@@ -24,7 +24,29 @@
         </button>
 
         <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
-            <ul class="nav navbar-nav ml-auto">
+            <ul class="nav navbar-nav ml-auto ">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <g:link controller="category" action="show">View Category</g:link>
+                        </li>
+                        <li class="dropdown-item">
+                            <g:link controller="category" action="create">Create Category</g:link>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Items <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <g:link controller="item" action="show">View Items</g:link>
+                        </li>
+                        <li class="dropdown-item">
+                            <g:link controller="item" action="create">Create Item</g:link>
+                        </li>
+                    </ul>
+                </li>
                 <g:pageProperty name="page.nav"/>
             </ul>
         </div>
