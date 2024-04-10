@@ -19,6 +19,7 @@
                         <th scope="col">Price</th>
                         <th scope="col" >Image</th>
                         <th scope="col" >Category</th>
+                        <th scope="col" >Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,7 +29,7 @@
                             <td>${temp.name}</td>
                             <td>${temp.price}</td>
                             <td>
-                                <img src="${createLink(controller: 'item', action: 'getImage', id: temp.id)}" alt="Image" />
+                                <img src="${createLink(controller: 'item', action: 'getImage', id: temp.id)}" alt="Image" width="50px" height="50px"/>
                             </td>
                             <td>${temp.category}</td>
                             <td>
