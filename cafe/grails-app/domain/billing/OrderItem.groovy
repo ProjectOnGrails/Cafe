@@ -7,6 +7,11 @@ class OrderItem {
     static hasMany = [item: Item]
     int quantity
     double amount
+    Date dateCreated
+    Date lastUpdated
+    String createdBy
+    String updatedBy
+
     static constraints = {
         quantity nullable: false,blank: false
         amount nullable: false,blank: false

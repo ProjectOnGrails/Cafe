@@ -7,6 +7,10 @@ class Item {
     double discountedPrice
     byte[] image
     static belongsTo = [category: Category]
+    Date dateCreated
+    Date lastUpdated
+    String createdBy
+    String updatedBy
     static constraints = {
         name size: 0..30,blank: false,nullable: false
         imageURL nullable: true

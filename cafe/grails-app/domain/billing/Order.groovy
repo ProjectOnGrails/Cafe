@@ -7,6 +7,10 @@ class Order {
     static belongsTo = [employee: Employee]
     Date orderDate
     double amount
+    Date dateCreated
+    Date lastUpdated
+    String createdBy
+    String updatedBy
     static constraints = {
         orderDate nullable: false,blank: false,date: true
         amount nullable: false,blank: false
