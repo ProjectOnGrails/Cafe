@@ -7,10 +7,9 @@ import javax.validation.constraints.Email
 class Employee {
     String name
     String gender
-    Email email
+    String email
     long number
     Date joinedDate
-    static belongsTo = [role:Role]
     static  hasMany = [order: Order]
     static constraints = {
     }
