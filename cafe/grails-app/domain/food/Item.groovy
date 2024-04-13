@@ -2,14 +2,15 @@ package food
 
 class Item {
     String name
-    int price
+    double price
     String description
-    int discountedPrice
+    double discountedPrice
     byte[] image
     static belongsTo = [category: Category]
     static constraints = {
-        name size: 0..30,blank: false
+        name size: 0..30,blank: false,nullable: false
         imageURL nullable: true
         imageURL (size: 0..2048000)
+        description nullable: true
     }
 }
