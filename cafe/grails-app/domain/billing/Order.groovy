@@ -7,6 +7,7 @@ class Order {
     static belongsTo = [employee: Employee]
     Date orderDate
     double amount
+    static hasOne = [cancellationRequest:OrderCancellation]
     Date dateCreated
     Date lastUpdated
     String createdBy
