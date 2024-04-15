@@ -1,6 +1,7 @@
 package cafe
 
 import com.cafe.Requestmap
+import user.Employee
 
 class BootStrap {
 
@@ -12,7 +13,9 @@ class BootStrap {
                 '/logout', '/logout.*', '/logout/*']) {
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
+
     }
+
     def destroy = {
     }
 }

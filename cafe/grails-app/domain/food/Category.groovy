@@ -4,6 +4,7 @@ class Category {
     String name
     String description
     static hasMany = [items:Item]
+
     Date dateCreated
     Date lastUpdated
     String createdBy
