@@ -11,14 +11,13 @@ import user.Employee
 class User implements Serializable {
 
     private static final long serialVersionUID = 1
-    static belongsTo = [employee: Employee]
     String username
     String password
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-
+    static belongsTo = [employee:Employee]
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }

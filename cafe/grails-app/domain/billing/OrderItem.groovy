@@ -3,7 +3,7 @@ package billing
 import food.Item
 
 class OrderItem {
-    static belongsTo = [order:Order]
+    static belongsTo = [bill:Bill]
     static hasMany = [item: Item]
     int quantity
     double amount

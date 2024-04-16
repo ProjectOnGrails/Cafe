@@ -1,8 +1,8 @@
 package user
 
-import billing.Order
+import billing.Bill
+import com.cafe.User
 
-import javax.validation.constraints.Email
 
 class Employee {
     String name
@@ -13,18 +13,22 @@ class Employee {
     String email
     long number
     Date joinedDate
-    static  hasMany = [order: Order]
+    static  hasMany = [bill: Bill]
 
     Date dateCreated
     Date lastUpdated
     String createdBy
     String updatedBy
+    static hasOne = [user: User]
+
     static constraints = {
         name nullable: false,blank: false
         gender nullable: false,blank: false
         email nullable: false,blank: false, email: true
         number nullable: false,blank: false
         joinedDate nullable: false,blank: false
+        createdBy nullable: true
+        updatedBy nullable: true
     }
 }
 

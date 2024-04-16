@@ -4,7 +4,7 @@ import com.cafe.User
 import user.Employee
 
 class OrderCancellation {
-    static belongsTo = [order:Order,requestedBy: Employee]
+    static belongsTo = [bill:Bill,requestedBy: Employee]
     String reason
 
     CancellationStatus status
