@@ -27,8 +27,14 @@ class Employee {
         email nullable: false,blank: false, email: true
         number nullable: false,blank: false
         joinedDate nullable: false,blank: false
-        createdBy nullable: true
-        updatedBy nullable: true
+        lastUpdated nullable: true
+    }
+    def beforeInsert = {
+        dateCreated = new Date()
+    }
+    def beforeUpdate ={
+        lastUpdated = new Date()
     }
 }
+
 

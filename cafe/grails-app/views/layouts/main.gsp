@@ -97,7 +97,7 @@
         <br>
         <ul class="nav nav-pills flex-column mb-auto ">
             <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
+                <a href="/" class="nav-link active" aria-current="page">
                     <i class="bi bi-house-door-fill" style="font-size: 16px; margin-right: 8px;"></i>
                     Home
                 </a>
@@ -124,16 +124,26 @@
                 <a href="#" class="nav-link text-white">
                     <i class="bi bi-people-fill" style="font-size: 16px; margin-right: 8px;"></i>
                     Employee
-
                 </a>
             </li>
+
+<sec:ifNotLoggedIn>
+    <hr color="white">
+    <br>
+    <li>
+        <a href="/login/auth" class="nav-link text-white">
+            <i class="bi bi-box-arrow-in-right" style="font-size: 16px; margin-right: 8px;"></i>
+            Login
+        </a>
+    </li>
+</sec:ifNotLoggedIn>
         </ul>
         <hr>
         <sec:ifLoggedIn>
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-circle" style="font-size: 32px;margin-right: 8px;"></i>
-                    <strong><sec:username/></strong>
+                    <strong>Hello <sec:username/>!</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -145,7 +155,12 @@
             </div>
         </sec:ifLoggedIn>
         <sec:ifNotLoggedIn>
-            <h1>Sign in</h1>
+            <div class="">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none">
+            <i class="bi bi-person-circle" style="font-size: 32px;margin-right: 8px;"></i>
+            <strong>Hello Anonymous!</strong>
+                </a>
+            </div>
         </sec:ifNotLoggedIn>
 
     </div>

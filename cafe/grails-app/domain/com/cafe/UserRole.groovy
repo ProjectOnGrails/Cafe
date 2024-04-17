@@ -14,7 +14,6 @@ class UserRole implements Serializable {
 
 	User user
 	Role role
-
 	@Override
 	boolean equals(other) {
 		if (other instanceof UserRole) {
