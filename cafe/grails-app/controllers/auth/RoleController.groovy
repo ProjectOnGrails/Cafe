@@ -23,20 +23,17 @@ class RoleController {
         }
         redirect(view: "index")
     }
-    @Transactional
-    def delete(Long id) {
-        def roleInstance = Role.get(id)
-        if (!roleInstance) {
-            flash.message = "Role not found with id $id"
-            redirect(action: "index")
-        } else {
-            try {
-                roleInstance.delete(flush: true)
-                flash.message = "Role deleted successfully"
-            } catch (Exception e) {
-                flash.message = "Error deleting role: ${e.message}"
+
+    def delete() {
+        try {
+            if(!roleService.delete(params.param1)){
+                flash.message = "Role with id ${params.param1} not found."
+
+            }else{
+                flash.message = "Role with id ${param1} deleted."
             }
-            redirect(action: "index")
+        }catch(e){
+            flash.message = "Error deleting role: ${e.message}"
         }
     }
     @Transactional

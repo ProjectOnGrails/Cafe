@@ -9,7 +9,20 @@ class RoleService {
     boolean save(Role role) {
         if(role.save()){
             return true
+        }else{
+            return false
         }
-        return false
+
+    }
+
+    boolean delete(def id){
+        Role role = Role.get(id)
+        if(!role){
+            return false
+        }else{
+            role.delete(flush:true)
+            return true
+        }
+
     }
 }
