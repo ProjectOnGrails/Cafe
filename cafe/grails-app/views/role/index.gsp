@@ -34,7 +34,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <g:submitButton class="btn btn-primary edit" name="Edit" value="Update"/>
+                            <button class="btn btn-primary edit" name="Edit" value="Update" id="edit">Update</button>
                                 <g:submitButton id="create" class="btn btn-primary" name="Create" value="Submit"/>
                         </div>
                         </g:form>
@@ -73,25 +73,43 @@
 <script>
 
    $("#addRole").click(function(){
-       $('.edit').hide()
-       $('#create').show()
-       $('#role').hide()
+       $('.edit').hide();
+       $('#create').show();
+       $('#role').hide();
        $('#editAuthority').val('');
-   })
-    $(".editBtn").click(function(){
+   });
+   $("#edit").click(function(){
+       var id = $("#editId").val()
+       var authority = $("#editAuthority").val()
 
+       var requestData = {
+           param1: id,
+           param2: authority
+       };
+       console.log(id,authority);
+       $.ajax({
+           url: "${createLink(controller:'role',action:'update')}",
+           type:"post",
+           data: requestData,
+           success: function(response) {
+               console.log('Controller action called successfully.');
+               console.log(response);
+               location.reload();// Log the response from the controller
+           },
+           error: function(xhr, status, error) {
+               console.error('Error calling controller action:', error);
+           }
+       });
+   });
+    $(".editBtn").click(function(){
         var roleId = $(this).data('role-id');
         var roleAuthority = $(this).data('role-authority');
         $('#editAuthority').val(roleAuthority);
         $('#editId').val(roleId);
-
-
-
-        $('.edit').show()
-        $('#create').hide()
-        $('#role').show()
+        $('.edit').show();
+        $('#create').hide();
+        $('#role').show();
         $('#exampleModal').modal('show');
-
     });
 
     $(document).ready(function () {

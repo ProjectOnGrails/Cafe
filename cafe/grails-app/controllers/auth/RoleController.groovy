@@ -9,30 +9,18 @@ class RoleController {
     def index() {
         def roles = Role.list()
         [roles:roles]
-//        def response=[
-//                draw: params.int('draw'),
-//                recordsTotal: roles.size(),
-//                recordsFiltered: roles.size(),
-//                data: roles
-//        ]
-//        render response as JSON
     }
     def add(){
-        Role role = new Role(params)
-        if(role.id){
-            update(role.id,role.authority)
-        }else{
-            try{
-                if(roleService.save(role)){
-                    flash.message = "${role.authority} added to roles."
-                }else{
-                    flash.message = "${role.authority} couldn't be added to roles."
-                }
-            }catch (e){
-                flash.message = "Error during saving data. ${e.message}"
+        try{
+            Role role = new Role(params)
+            if(roleService.save(role)){
+                flash.message = "${role.authority} added to roles."
+            }else{
+                flash.message = "${role.authority} couldn't be added to roles."
             }
+        }catch (e){
+            flash.message = "Error during saving data. ${e.message}"
         }
-
         redirect(view: "index")
     }
     @Transactional
@@ -52,18 +40,24 @@ class RoleController {
         }
     }
     @Transactional
-    def update(Long id, String authority) {
+    def update() {
         try{
-            Role roleInstance = Role.get(id)
-            if(!roleInstance){
-                flash.message = "Role not found with id $id"
+            def param1 = params.param1
+            def param2 = params.param2
+            Role role = Role.get(param1)
+            if(role){
+                role.authority = param2
+                role.save()
+                flash.message = "Role updated successfully."
+                redirect(action: "index")
             }else{
-                roleInstance.authority = authority
-                roleInstance.save()
-                flash.message = "Role updated with id $id"
+                flash.message = "Role update failed. Role not found."
+                redirect(action: "index")
             }
         }catch(e){
             flash.message = "Error while updating role: $e.message"
+            redirect(action: "index")
         }
+
     }
 }
