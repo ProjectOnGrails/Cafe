@@ -16,7 +16,7 @@ class RoleService {
     }
 
     boolean delete(def id){
-        Role role = Role.get(id)
+        Role role = Role.findById(id)
         if(!role){
             return false
         }else{

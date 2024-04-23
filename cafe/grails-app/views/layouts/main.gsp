@@ -36,6 +36,18 @@
                 </a>
             </li>
             <li>
+                <a href="/category/index" class="nav-link text-white">
+                    <i class="bi bi-graph-up" style="font-size: 16px; margin-right: 8px;"></i>
+                    Category
+                </a>
+            </li>
+            <li>
+                <a href="/item/index" class="nav-link text-white">
+                    <i class="bi bi-graph-up" style="font-size: 16px; margin-right: 8px;"></i>
+                    Items
+                </a>
+            </li>
+            <li>
                 <a href="#" class="nav-link text-white">
                     <i class="bi bi-cart4" style="font-size: 16px; margin-right: 8px;"></i>
                     Orders

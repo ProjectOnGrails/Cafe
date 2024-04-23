@@ -24,37 +24,54 @@ class RoleController {
         redirect(view: "index")
     }
 
-    def delete() {
-        try {
-            if(!roleService.delete(params.param1)){
-                flash.message = "Role with id ${params.param1} not found."
+    def edit(){
+        def id = params.id
+        Role roleInstance = Role.findById(id)
+        if(roleInstance){
+          render (template: 'edit',model: [roleInstance:roleInstance])
+        }else{
+            render "${message(code: 'default.not.found.message', args: [message(code: 'Role'), ""])}"
+        }
+    }
 
+    def delete() {
+        def id = params.id
+        try {
+            if(roleService.delete(id)){
+
+                flash.message = "Role with id ${id} deleted."
             }else{
-                flash.message = "Role with id ${param1} deleted."
+                flash.message = "Role with id ${id} not found."
             }
         }catch(e){
             flash.message = "Error deleting role: ${e.message}"
         }
+        redirect (action:'index')
     }
+
     @Transactional
     def update() {
-        try{
-            def param1 = params.param1
-            def param2 = params.param2
-            Role role = Role.get(param1)
-            if(role){
-                role.authority = param2
-                role.save()
-                flash.message = "Role updated successfully."
-                redirect(action: "index")
+            def roleId = params.id
+            def roleAuthority = params.authority
+            Role roleInstance = Role.findById(roleId)
+            if(roleInstance){
+                try {
+                    roleInstance.authority = roleAuthority
+                    if(roleInstance.save(flush:true)) {
+                        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'Role'), roleInstance.authority])}"
+                        redirect(action:"index")
+                    }else {
+                        flash.message = "Error while updating role."
+                        redirect(action: "index")
+                    }
+                }catch(e) {
+                    flash.error = "Medical Test update failed: ${e.message}"
+                    redirect(action: "index")
+                }
             }else{
-                flash.message = "Role update failed. Role not found."
+                flash.error = "${message(code: 'default.not.found.message', args: [message(code: 'Role'), ""])}"
                 redirect(action: "index")
             }
-        }catch(e){
-            flash.message = "Error while updating role: $e.message"
-            redirect(action: "index")
         }
-
     }
-}
+

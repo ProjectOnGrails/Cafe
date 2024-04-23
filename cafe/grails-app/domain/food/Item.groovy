@@ -16,6 +16,7 @@ class Item {
         imageURL nullable: true
         imageURL (size: 0..2048000)
         description nullable: true
-        lastUpdated nullable: true
+        lastUpdated nullable: true, blank:true
+        updatedBy nullable: true, blank: true
     }
 }

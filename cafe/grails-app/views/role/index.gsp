@@ -12,6 +12,7 @@
     <div class="container" style="margin: 3rem">
         <g:render template="/Shared/message"/>
         <g:render template="create"/>
+        <div class="modal-body" id="roleEdit"></div>
         <!-- Data Table -->
         <g:render template="show"/>
     </div>
@@ -20,62 +21,19 @@
         $('#myTable').DataTable();
     });
 
-   $("#addRole").click(function(){
-       $('.edit').hide();
-       $('#create').show();
-       $('#role').hide();
-       $('#editAuthority').val('');
-   });
 
-    $(".editBtn").click(function(){
+    $(".editBtn").click(function() {
         var roleId = $(this).data('role-id');
-        var roleAuthority = $(this).data('role-authority');
-        $('#editAuthority').val(roleAuthority);
-        $('#editId').val(roleId);
-        $('.edit').show();
-        $('#create').hide();
-        $('#role').show();
-        $('#exampleModal').modal('show');
-    });
-
-   $("#edit").click(function(){
-       var id = $("#editId").val()
-       var authority = $("#editAuthority").val()
-       var requestData = {
-           param1: id,
-           param2: authority
-       };
-       console.log(id,authority);
-       $.ajax({
-           url: "${createLink(controller:'role',action:'update')}",
-           type:"post",
-           data: requestData,
-           success: function(response) {
-               console.log('Controller action called successfully.');
-               console.log(response);
-               location.reload();// Log the response from the controller
-           },
-           error: function(xhr, status, error) {
-               console.error('Error calling controller action:', error);
-           }
-       });
-   });
-
-    $(".deleteBtn").click(function (){
-        var roleId = $(this).data('role-id');
-        var requestData = {
-            param1: roleId,
-        };
         $.ajax({
-            url: "${createLink(controller:'role',action:'delete')}",
-            type:"post",
-            data: requestData,
-            success: function(response) {
+            url: "${createLink(controller:'role',action:'edit')}",
+            type: "post",
+            data: {id: roleId},
+            success: function (response) {
+                $('#roleEdit').html(response);
+                $('#editModal').modal('show');
                 console.log('Controller action called successfully.');
-                console.log(response);
-                location.reload();// Log the response from the controller
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error calling controller action:', error);
             }
         });

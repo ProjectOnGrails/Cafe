@@ -8,6 +8,8 @@ import grails.gorm.transactions.Transactional
 import user.Employee
 
 
+
+@Transactional
 class BootStrap {
     def init = { servletContext ->
 
@@ -19,6 +21,8 @@ class BootStrap {
             new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
         new Requestmap(url: '/role/**',      configAttribute: 'ROLE_ADMIN').save()
+        new Requestmap(url: '/category/**',      configAttribute: 'ROLE_ADMIN').save()
+        new Requestmap(url: '/item/**',      configAttribute: 'ROLE_ADMIN').save()
         if (Employee.count() == 0) {
 
             def roleAdmin = new Role(
@@ -30,7 +34,7 @@ class BootStrap {
                     password: 'admin'
             )
 
-            def emp1 = new Employee(name: 'Sujan', gender: Employee.Gender.MALE, email: 'karna.sujan52@gmail.com', number: '9848317348', joinedDate: new Date(), lastUpdated: new Date(), createdBy: 'admin', updatedBy: 'admin', user: user).save()
+            def emp1 = new Employee(name: 'Sujan', gender: Employee.Gender.MALE, email: 'karna.sujan52@gmail.com', number: '9848317348', joinedDate: new Date(),dateCreated:new Date(), lastUpdated: new Date(), createdBy: 'admin', updatedBy: 'admin', user: user).save()
             new UserRole(
                     user: user,
                     role: roleAdmin

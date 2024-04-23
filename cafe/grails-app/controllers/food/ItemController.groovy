@@ -7,56 +7,48 @@ import grails.gorm.transactions.Transactional
 class ItemController {
     def itemService
     def categoryService
-    def index() { }
+    def sql
+    def index() {
 
-    def create(){
-        Item obj = new Item()
-        List<Category> categories = categoryService.read()
+        //create operation start
+        def itemName = params.name
+        def itemPrice = params.double('price')
+        def itemDescription = params.description
+        def itemDiscountedPrice = params.double('discountedPrice')
+        def itemImage = params.bytes('image')
+        def categoryId = params.int('categoryId')
+        def createdBy = params.createdBy
 
-        [data:obj,categories:categories]
-    }
-    @Transactional
-    def save(){
-        try {
-            if(params){
-                def item = new Item(params)
-                item.save()
-                flash.message = "item has been saved."
-                redirect(view: "index")
-            }else{
-                flash.message = "item cannot be saved."
-                redirect(view: "create")
-            }
-        }catch(e){
-            flash.message = "Cannot connect to database" + "${e.message}"
-            redirect(view: "create")
-        }
-
-    }
-    def show(){
-        try{
-            if(itemService.read()){
-                [item:itemService.read()]
-            }
-            else{
-                flash.message = "No data in database."
-                redirect(view: "index")
-            }
-        }catch(e){
-            flash.message = "Cannot connect to database."+"${e.message}"
-            redirect(view: "index")
-        }
-
-    }
-    def getImage(Long id) {
-        Item data = Item.get(id)
-        if (data && data.imageURL) {
-            response.contentType = 'image/jpeg' // Set appropriate content type
-            response.outputStream << data.imageURL
-            response.outputStream.flush()
+        def result = sql.executeInsert("""
+        INSERT INTO Item (name, price, description, discountedPrice, image, category_id, dateCreated, createdBy)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, [
+                itemName,
+                itemPrice,
+                itemDescription,
+                itemDiscountedPrice,
+                itemImage,
+                categoryId,
+                new Date(),
+                createdBy
+        ])
+        if (result > 0) {
+            render "Item created successfully"
         } else {
-            response.status = 404
+            render "Failed to create item"
         }
+        //create operation end
 
+        //read operation start
+        Item obj = sql.rows("SELECT * FROM items")
+        if(obj){
+            render "${obj}"
+        }else{
+            render "Empty table"
+        }
+        //read operation end
+    }
+
+    def create() {
     }
 }

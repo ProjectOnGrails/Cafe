@@ -1,83 +1,86 @@
 package food
 
+import com.cafe.Role
 import grails.gorm.transactions.Transactional
 
 
 
 class CategoryController {
+    def springSecurityService
     def categoryService
-    def index() { }
+
+    def index() {
+        List<Category> categories  = Category.list();
+        [categories:categories]
+    }
+
 
     def create(){
-        Category obj = new Category()
-        [data:obj]
-    }
-
-    def save(Category data){
-        try {
-            if(categoryService.create(data)){
-                flash.message = "${data.name} category has been saved."
-                redirect(view: "index")
-            }else{
-                flash.message = "${data.name} category cannot be saved."
-                redirect(view: "create")
-            }
-        }catch(e){
-            flash.message = "Cannot connect to database" + "${e.message}"
-            redirect(view: "create")
-        }
-
-    }
-
-    def show(){
-
         try{
-            if(categoryService.read()){
-                [category:categoryService.read()]
+            Category newCategory = new Category(params)
+            newCategory.createdBy = springSecurityService.currentUser
+            if(categoryService.save(newCategory)){
+                flash.message = "${newCategory.name} added to roles."
+            }else{
+                flash.message = "${newCategory.name} couldn't be added to roles."
             }
-            else{
-                flash.message = "No data in database."
-                redirect(view: "index")
-            }
-        }catch(e){
-            flash.message = "Cannot connect to database."+"${e.message}"
-            redirect(view: "index")
+        }catch (e){
+            flash.message = "Error during saving data. ${e.message}"
         }
-
+        redirect(view: "index")
     }
+
 
     @Transactional
     def delete(long id){
         try {
             if(categoryService.delete(id)){
                 flash.message = "Category deleted successfully!"
+                redirect(view: 'index')
             }
             else{
                 flash.message = "Category not found!"
+                redirect(view: 'index')
             }
         }catch(e){
             flash.message = "Cannot connect to database."+"${e.message}"
+            redirect(view: 'index')
         }
-
-        redirect(action: "show")
     }
 
-    def update(long id){
-        Category obj = Category.get(id)
-        [data:obj]
+    def edit(){
+        def id = params.id
+        Category categoryInstance = Category.findById(id)
+        if(categoryInstance){
+            render (template: 'edit',model: [category:categoryInstance])
+        }else{
+            render "${message(code: 'default.not.found.message', args: [message(code: 'Category'), ""])}"
+        }
     }
+
     @Transactional
-    def updatedata(long id,Category obj){
-        try{
-            if(categoryService.update(id,obj)){
-                flash.message = "Category updated successfully!"
-            }else{
-                flash.message = "Category not found!"
+    def update(){
+        def categoryId = params.id
+        Category categoryInstance = Category.findById(categoryId)
+        if(categoryInstance){
+            try {
+                categoryInstance.properties = params
+                categoryInstance.updatedBy = springSecurityService.currentUser
+                if(categoryInstance.save(flush:true)) {
+                    flash.message = "${message(code: 'default.updated.message', args: [message(code: 'Role'), roleInstance.authority])}"
+                    redirect(action:"index")
+                }else {
+                    flash.message = "Error while updating role."
+                    redirect(action: "index")
+                }
+            }catch(e) {
+                flash.error = "Medical Test update failed: ${e.message}"
+                redirect(action: "index")
             }
-        }catch(e){
-            flash.message = "Cannot connect to database."+"${e.message}"
+        }else{
+            flash.error = "${message(code: 'default.not.found.message', args: [message(code: 'Role'), ""])}"
+            redirect(action: "index")
         }
-        redirect(view:"index")
     }
 
 }
