@@ -5,6 +5,7 @@ import com.cafe.User
 
 
 class Employee {
+
     String name
     Gender gender
     static enum Gender{
@@ -12,7 +13,7 @@ class Employee {
     }
     String email
     long number
-    Date joinedDate
+    int joinedDays = 0
     static  hasMany = [bill: Bill]
 
     Date dateCreated
@@ -26,11 +27,15 @@ class Employee {
         gender nullable: false,blank: false
         email nullable: false,blank: false, email: true
         number nullable: false,blank: false
-        joinedDate nullable: false,blank: false
+        user nullable: true
+        updatedBy nullable: true
         lastUpdated nullable: true
+        bill nullable: true
+        updatedBy nullable: true
     }
     def beforeInsert = {
         dateCreated = new Date()
+
     }
     def beforeUpdate ={
         lastUpdated = new Date()

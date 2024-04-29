@@ -10,11 +10,13 @@
 </head>
 <body>
 <div class="container" style="margin: 3rem">
+
     <g:render template="/Shared/message"/>
     <g:render template="create"/>
     <div class="modal-body" id="categoryEdit"></div>
     <!-- Data Table -->
     <g:render template="show"/>
+    <g:renderCategories />
 </div>
 <script>
     $(document).ready(function () {

@@ -7,6 +7,8 @@ class Item {
     double discountedPrice
     byte[] image
     static belongsTo = [category: Category]
+    int updateCount = 0
+
     Date dateCreated
     Date lastUpdated
     String createdBy
@@ -18,5 +20,14 @@ class Item {
         description nullable: true
         lastUpdated nullable: true, blank:true
         updatedBy nullable: true, blank: true
+    }
+    def beforeInsert = {
+        dateCreated = new Date()
+    }
+    def beforeUpdate ={
+        lastUpdated = new Date()
+        if(isDirty('name')){
+            updateCount++;
+        }
     }
 }

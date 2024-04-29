@@ -13,7 +13,6 @@ class Role implements Serializable {
 
 	String authority
 	int updateCount = 0
-
 	static constraints = {
 		authority nullable: false, blank: false, unique: true
 	}

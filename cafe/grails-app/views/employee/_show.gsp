@@ -5,7 +5,10 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Name</th>
-            <th scope="col">Description</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact No.</th>
+            <th scope="col">Joined Days</th>
             <th scope="col">Created By</th>
             <th scope="col">Created Date</th>
             <th scope="col">Updated By</th>

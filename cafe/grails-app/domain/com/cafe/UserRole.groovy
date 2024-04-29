@@ -20,15 +20,14 @@ class UserRole implements Serializable {
 			other.userId == user?.id && other.roleId == role?.id
 		}
 	}
-
-    @Override
+	@Override
 	int hashCode() {
-	    int hashCode = HashCodeHelper.initHash()
-        if (user) {
-            hashCode = HashCodeHelper.updateHash(hashCode, user.id)
+		int hashCode = HashCodeHelper.initHash()
+		if (user) {
+			hashCode = HashCodeHelper.updateHash(hashCode, user.id)
 		}
 		if (role) {
-		    hashCode = HashCodeHelper.updateHash(hashCode, role.id)
+			hashCode = HashCodeHelper.updateHash(hashCode, role.id)
 		}
 		hashCode
 	}

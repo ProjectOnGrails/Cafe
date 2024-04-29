@@ -14,7 +14,6 @@ class Category {
     static constraints = {
         name size: 0..30,blank: false,nullable: false
         description nullable: true,blank: true
-        lastUpdated nullable: true
         updatedBy nullable: true,blank: true
         lastUpdated nullable: true,blank:true
     }

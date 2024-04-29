@@ -6,21 +6,28 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discounted Price</th>
+            <th scope="col">Image</th>
             <th scope="col">Created By</th>
             <th scope="col">Created Date</th>
             <th scope="col">Updated By</th>
             <th scope="col">Update Count</th>
             <th scope="col">Last Update</th>
             <th scope="col">Action</th>
+
         </tr>
         </thead>
         <tbody>
-        <g:each in="${categories}" var="category">
+        <g:each in="${items}" var="item">
             <tr>
-                <td>${category.id}</td>
-                <td>${category.name}</td>
-                <td>${category.description}</td>
-                <td>${category.createdBy}</td>
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.description}</td>
+                <td>${item.price}</td>
+                <td>${item.discountedPrice}</td>
+                <td>${item.image}</td>
+                <td>${item.createdBy}</td>
                 <td>
                     <g:dateFormat format="yyyy-MM-dd HH:mm:ss" date="${category.dateCreated}" />
                 </td>
