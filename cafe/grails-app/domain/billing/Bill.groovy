@@ -3,10 +3,13 @@ package billing
 import user.Employee
 
 class Bill {
+
     static belongsTo = [employee: Employee]
     Date orderDate
     double amount
     static hasOne = [cancellationRequest: OrderCancellation]
+
+
     Date dateCreated
     Date lastUpdated
     String createdBy

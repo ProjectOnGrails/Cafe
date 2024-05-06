@@ -6,6 +6,7 @@ class OrderItem {
     static belongsTo = [bill:Bill]
     static hasMany = [item: Item]
     int quantity
+
     double amount
     Date dateCreated
     Date lastUpdated

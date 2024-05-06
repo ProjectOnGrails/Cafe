@@ -13,8 +13,48 @@
 
     <g:render template="/Shared/message"/>
     <g:render template="create"/>
+    <div class="modal-body" id="employeeDetail"></div>
+    <div class="modal-body" id="employeeEdit"></div>
+
+    <g:render template="show"/>
 </div>
 <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+    $(".viewBtn").click(function() {
+        var employeeId = $(this).data('employee-id');
+        $.ajax({
+            url: "${createLink(controller:'employee',action:'details')}",
+            type: "post",
+            data: {id: employeeId},
+            success: function (response) {
+                $('#employeeDetail').html(response);
+                $('#detailModal').modal('show');
+                console.log('Controller action called successfully.');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
+
+    $(".editBtn").click(function() {
+        var employeeId = $(this).data('employee-id');
+        $.ajax({
+            url: "${createLink(controller:'employee',action:'edit')}",
+            type: "post",
+            data: {id: employeeId},
+            success: function (response) {
+                $('#employeeEdit').html(response);
+                $('#editModal').modal('show');
+                console.log('Controller action called successfully.');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

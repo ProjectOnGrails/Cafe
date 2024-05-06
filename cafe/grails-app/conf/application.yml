@@ -114,7 +114,7 @@ dataSource:
 environments:
     development:
         dataSource:
-            logSql: true
+            logSql: false
             dbCreate: update
             url: jdbc:mysql://localhost:3306/grails
     test:

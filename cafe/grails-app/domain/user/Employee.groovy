@@ -20,6 +20,7 @@ class Employee {
     Date lastUpdated
     String createdBy
     String updatedBy
+    int updateCount = 0
     static hasOne = [user: User]
 
     static constraints = {
@@ -39,6 +40,9 @@ class Employee {
     }
     def beforeUpdate ={
         lastUpdated = new Date()
+        if(isDirty()){
+            updateCount++;
+        }
     }
 }
 
