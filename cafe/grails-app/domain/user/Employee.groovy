@@ -32,7 +32,6 @@ class Employee {
         updatedBy nullable: true
         lastUpdated nullable: true
         bill nullable: true
-        updatedBy nullable: true
     }
     def beforeInsert = {
         dateCreated = new Date()

@@ -15,6 +15,9 @@
                             <label>Name:</label>
                             <g:textField type="number"  name="id" id="editId" disabled="disabled" value= '${employeeInstance.name}'/><br/>
                             <br/>
+                            <label>Username:</label>
+                            <g:textField type="number"  name="id" id="editId" disabled="disabled" value= '${userInstance.username}'/><br/>
+                            <br/>
                             <label>Gender:</label>
                             <g:textField type="number"  name="id" id="editId" disabled="disabled" value= '${employeeInstance.gender}'/><br/>
                             <br/>

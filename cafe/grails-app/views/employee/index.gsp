@@ -12,7 +12,28 @@
 <div class="container" style="margin: 3rem">
 
     <g:render template="/Shared/message"/>
-    <g:render template="create"/>
+
+%{--    Employee create modal start--}%
+    <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeModal" id="addEmployee" style="margin-bottom: 2rem">
+            Add Employee
+        </button>
+        <div class="modal fade bd-example-modal-lg" id="employeeModal" role="dialog" data-bs-backdrop="static" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="employeeModalLabel">Add Employee</h1>
+                        <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="employeeCreate"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+%{--    Employee create model end--}%
+
     <div class="modal-body" id="employeeDetail"></div>
     <div class="modal-body" id="employeeEdit"></div>
 
@@ -22,6 +43,22 @@
     $(document).ready(function () {
         $('#myTable').DataTable();
     });
+
+    $("#addEmployee").click(function(){
+        $.ajax({
+            url: "${createLink(controller:'employee',action:'createForm')}",
+            type:"post",
+            success: function(data) {
+                $('#employeeCreate').html(data);
+                $('#addEmployee').modal('show');
+            },
+        });
+    });
+
+    $("#btnClose").click(function(){
+        window.location.reload();
+    });
+
     $(".viewBtn").click(function() {
         var employeeId = $(this).data('employee-id');
         $.ajax({

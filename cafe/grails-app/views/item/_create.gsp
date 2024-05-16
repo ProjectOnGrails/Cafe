@@ -1,45 +1,44 @@
 <div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#itemModal" id="addItem" style="margin-bottom: 2rem">
-        Add Item
-    </button>
-
-    <div class="modal fade" id="itemModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="categoryModalLabel">Add Item</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <g:form action="create">
-                    <div class="modal-body">
-                        <label for="name">Item Name:</label>
-                        <g:textField  name="name"/><br/>
-                        <br>
-                        <label for="description">Item Description:</label>
-                        <g:textArea  name="description"/><br/>
-                        <br/>
-                        <label for="price">Item Price:</label>
-                        <g:textField type="number"  name="price"/><br/>
-                        <br>
-                        <label for="discountedPrice">Discounted Price:</label>
-                        <g:textField type="number"  name="discountedPrice"/><br/>
-                        <br>
-                        <label for="category">Category:</label>
-
-                        <g:textField type="number"  name="category"/><br/>
-                        <br>
-                        <label for="image">Item Image:</label>
-                        <g:textField type="number"  name="image"/><br/>
-                        <br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <g:submitButton class="btn btn-primary" name="Create" value="Submit"/>
-                    </div>
-                </g:form>
+    <g:form action="create" enctype="multipart/form-data">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Category</label>
+            <div class="col-sm-9">
+                <g:select name="category.id" from="${categories}" optionKey="id" optionValue="name" noSelection="${['':'Select Item Category']}"/>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+                <g:textField class="form-control" name="name" id="name" placeholder="Item Name" required="true"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-9">
+                <g:textArea class="form-control" name="description" id="description" placeholder="Item Description"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Image</label>
+            <div class="col-sm-9">
+                <g:field type="file" name="image" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Price</label>
+            <div class="col-sm-9">
+                <g:field type="number" class="form-control" name="price" id="price" placeholder="Item Price" required="true"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Discounted Price</label>
+            <div class="col-sm-9">
+                <g:field type="number" class="form-control" name="discountedPrice" id="discountedPrice" placeholder="Leave empty to set as price above."/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <g:submitButton class="btn btn-primary" name="Create" value="Submit"/>
+        </div>
+    </g:form>
 </div>

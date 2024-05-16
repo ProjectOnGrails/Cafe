@@ -17,6 +17,8 @@ class BootStrap {
         new Requestmap(url: '/item/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/employee/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/bill/**', configAttribute: 'ROLE_ADMIN').save()
+        new Requestmap(url: '/dashboard/**', configAttribute: 'ROLE_ADMIN').save()
+        new Requestmap(url: '/ordercancellation/**', configAttribute: 'ROLE_ADMIN').save()
         initialService.firstEntry()
     }
 

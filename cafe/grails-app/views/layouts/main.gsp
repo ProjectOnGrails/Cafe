@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="/dashboard/index" class="nav-link text-white">
                     <i class="bi bi-graph-up" style="font-size: 16px; margin-right: 8px;"></i>
                     Dashboard
                 </a>
@@ -48,9 +48,9 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="/ordercancellation/index" class="nav-link text-white">
                     <i class="bi bi-cart4" style="font-size: 16px; margin-right: 8px;"></i>
-                    Orders
+                    Manage Orders
                 </a>
             </li>
             <li>
@@ -63,6 +63,12 @@
                 <a href="/employee/index" class="nav-link text-white">
                     <i class="bi bi-people-fill" style="font-size: 16px; margin-right: 8px;"></i>
                     Employee
+                </a>
+            </li>
+            <li>
+                <a href="/bill/index" class="nav-link text-white">
+                    <i class="bi bi-people-fill" style="font-size: 16px; margin-right: 8px;"></i>
+                    Bill
                 </a>
             </li>
 
