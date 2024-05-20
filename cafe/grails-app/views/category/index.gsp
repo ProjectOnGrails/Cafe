@@ -10,18 +10,90 @@
 </head>
 <body>
 <div class="container" style="margin: 3rem">
-
     <g:render template="/Shared/message"/>
-    <g:render template="create"/>
-    <div class="modal-body" id="categoryEdit"></div>
-    <!-- Data Table -->
-    <g:render template="show"/>
-    <g:renderCategories />
+
+%{--Category create start--}%
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" id="addCategory" style="margin-bottom: 2rem">
+        Add Category
+    </button>
+    <div class="modal fade" id="categoryModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="categoryModalLabel">Add Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categoryCreate"></div>
+            </div>
+        </div>
+    </div>
+%{--    Category create end--}%
+
+<!-- Data Table start-->
+<g:render template="show"/>
+%{--Date Table end--}%
+
+%{--    Details modal start--}%
+    <div class="modal fade" id="detailModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="detailModalLabel">Category Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categoryDetail"></div>
+            </div>
+        </div>
+    </div>
+%{--    Details modal end--}%
+
+%{--    Category edit start--}%
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editModalLabel">Edit Category</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="categoryEdit"></div>
+            </div>
+        </div>
+    </div>
+%{--    Category edit end--}%
+
+
 </div>
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable();
     });
+    $("#addCategory").click(function (){
+        $.ajax({
+            url: "${createLink(controller:'category',action:'createForm')}",
+            type:"post",
+            success: function(response) {
+                $('#categoryCreate').html(response);
+                $('#categoryModal').modal('show');
+            },
+        });
+    });
+    $(".viewBtn").click(function() {
+        var categoryId = $(this).data('category-id');
+        $.ajax({
+            url: "${createLink(controller:'category',action:'details')}",
+            type: "post",
+            data: {id: categoryId},
+            success: function (response) {
+                $('#categoryDetail').html(response);
+                $('#detailModal').modal('show');
+                console.log('Controller action called successfully.');
+            },
+            error: function (xhr, status, error) {
+                console.error('Error calling controller action:', error);
+            }
+        });
+    });
+
     $(".editBtn").click(function() {
         var categoryId = $(this).data('category-id');
         $.ajax({

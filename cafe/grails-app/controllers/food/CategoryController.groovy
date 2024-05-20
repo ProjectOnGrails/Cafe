@@ -13,16 +13,22 @@ class CategoryController {
         List<Category> categories  = Category.list();
         [categories:categories]
     }
-
-
+    def createForm(){
+        render (template: 'create')
+    }
+def details(){
+    def id = params.id
+    Category categoryInstance = Category.findById(id)
+    render(template: 'details',model:[category:categoryInstance])
+}
     def create(){
         try{
             Category newCategory = new Category(params)
             newCategory.createdBy = springSecurityService.currentUser
             if(categoryService.save(newCategory)){
-                flash.message = "${newCategory.name} added to roles."
+                flash.message = "${newCategory.name} added to category."
             }else{
-                flash.message = "${newCategory.name} couldn't be added to roles."
+                flash.message = "${newCategory.name} couldn't be added to category."
             }
         }catch (e){
             flash.message = "Error during saving data. ${e.message}"
@@ -67,18 +73,18 @@ class CategoryController {
                 categoryInstance.properties = params
                 categoryInstance.updatedBy = springSecurityService.currentUser
                 if(categoryInstance.save(flush:true)) {
-                    flash.message = "${message(code: 'default.updated.message', args: [message(code: 'Role'), roleInstance.authority])}"
+                    flash.message = "${message(code: 'default.updated.message', args: [message(code: 'Category'), categoryInstance.name])}"
                     redirect(action:"index")
                 }else {
-                    flash.message = "Error while updating role."
+                    flash.message = "Error while updating category."
                     redirect(action: "index")
                 }
             }catch(e) {
-                flash.error = "Medical Test update failed: ${e.message}"
+                flash.error = "Category update failed: ${e.message}"
                 redirect(action: "index")
             }
         }else{
-            flash.error = "${message(code: 'default.not.found.message', args: [message(code: 'Role'), ""])}"
+            flash.error = "${message(code: 'default.not.found.message', args: [message(code: 'Category'), ""])}"
             redirect(action: "index")
         }
     }

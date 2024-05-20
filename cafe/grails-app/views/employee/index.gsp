@@ -50,7 +50,7 @@
             type:"post",
             success: function(data) {
                 $('#employeeCreate').html(data);
-                $('#addEmployee').modal('show');
+                $('#employeeModal').modal('show');
             },
         });
     });

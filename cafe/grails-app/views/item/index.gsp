@@ -13,7 +13,7 @@
     <g:render template="/Shared/message"/>
 
 %{--Item create start--}%
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItem" style="margin-bottom: 2rem">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" id="addItem" style="margin-bottom: 2rem">
     <i class="bi bi-plus-lg"></i>
     Add Item
     </button>
@@ -21,7 +21,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addModalLabel">Add Item</h1>
+                    <h1 class="modal-title fs-5">Add Item</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="itemCreate"></div>

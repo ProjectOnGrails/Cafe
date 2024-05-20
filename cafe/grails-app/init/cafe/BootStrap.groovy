@@ -3,6 +3,7 @@ package cafe
 import com.cafe.Requestmap
 class BootStrap {
     def initialService
+    def springSecurityService
     def init = { servletContext ->
 
         for (String url in [
@@ -19,7 +20,9 @@ class BootStrap {
         new Requestmap(url: '/bill/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/dashboard/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/ordercancellation/**', configAttribute: 'ROLE_ADMIN').save()
+        springSecurityService.clearCachedRequestmaps()
         initialService.firstEntry()
+
     }
 
     def destroy = {

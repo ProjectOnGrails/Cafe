@@ -1,4 +1,4 @@
-<div>
+
     <g:form action="create" enctype="multipart/form-data">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Category</label>
@@ -41,4 +41,3 @@
             <g:submitButton class="btn btn-primary" name="Create" value="Submit"/>
         </div>
     </g:form>
-</div>

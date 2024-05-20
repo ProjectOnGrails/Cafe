@@ -22,7 +22,7 @@ class Category {
     }
     def beforeUpdate ={
         lastUpdated = new Date()
-        if(isDirty('name')){
+        if(isDirty()){
             updateCount++;
         }
     }
