@@ -65,13 +65,18 @@ class ItemController {
         List<Category> categories = Category.list()
         def id = params.id
         Item itemInstance = Item.findById(id)
+
         render(template: 'edit',model:[itemInstance:itemInstance,categories: categories])
     }
 
     @Transactional
     def update(long id){
         Item itemInstance = Item.findById(id)
+       def img = itemInstance.image
         itemInstance.properties = params
+        if(itemInstance.image.length <= 0){
+            itemInstance.image = img
+        }
         itemInstance.updatedBy = springSecurityService.currentUser
         try{
             if(itemService.save(itemInstance)){
@@ -92,10 +97,11 @@ class ItemController {
         render(template: 'detail',model:[itemInstance:itemInstance])
     }
 
-//    def viewPic(){
-//        def medicalTestInst=MedicalTest.get(params.fieldId)
-//        response.outputStream << medicalTestInst.pic
-//        response.outputStream.flush()
-//        return;
-//    }
+    def viewPic(){
+        Item itemInstance =Item.findById(params.id)
+        response.outputStream << itemInstance.image
+        response.outputStream.flush()
+        return ;
+
+    }
 }

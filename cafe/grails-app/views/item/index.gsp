@@ -31,7 +31,7 @@
 %{--Item create end--}%
 
 %{--Item list data table start--}%
-    <table class="table-striped" id="myTable">
+    <table class="table table-striped" id="myTable">
         <thead>
         <tr>
             <th scope="col">Id</th>

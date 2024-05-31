@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>role</title>
+    <title>Employee</title>
     <meta name="layout" content="main">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container" style="margin: 3rem">
+<div class="container" style="margin: 1rem">
 
     <g:render template="/Shared/message"/>
 
@@ -34,10 +34,51 @@
     </div>
 %{--    Employee create model end--}%
 
-    <div class="modal-body" id="employeeDetail"></div>
-    <div class="modal-body" id="employeeEdit"></div>
+%{--Employee details start--}%
+    <div class="modal fade" id="detailModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="detailModalLabel">Employee Details</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="employeeDetail"></div>
+            </div>
+        </div>
+    </div>
+%{--    Employee details end--}%
 
-    <g:render template="show"/>
+%{--    Employee edit start--}%
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editModalLabel">Edit Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="employeeEdit"></div>
+            </div>
+        </div>
+    </div>
+    %{--    Employee edit start--}%
+
+%{--    Employee data table start--}%
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <g:render template="show"/>
+        </tbody>
+    </table>
+%{--    Employee data table end--}%
 </div>
 <script>
     $(document).ready(function () {

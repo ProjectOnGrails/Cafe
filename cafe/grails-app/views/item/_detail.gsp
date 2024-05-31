@@ -3,7 +3,7 @@
         ${itemInstance.name}
     </div>
     <div class="card-body">
-        <img src="https://th.bing.com/th/id/R.dbebfe183ab4a92765119dc0623136bb?rik=5lYZ0fHGadTqOw&riu=http%3a%2f%2fimg.taste.com.au%2fEnoUrlY0%2ftaste%2f2016%2f11%2fbacon-cheddar-and-pineapple-pizza-77250-1.jpeg&ehk=8KCqFLnGx1Gbr0IWG%2fZSbC0bcR%2b0uw%2bDec1knTPHETg%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="momo">
+        <img src="${createLink(action:'viewPic', params: [id:itemInstance.id])}" class="card-img-top" alt="momo">
         <p>${itemInstance.description}</p>
         <div class="d-flex justify-content-between align-items-center">
             <div class="price">

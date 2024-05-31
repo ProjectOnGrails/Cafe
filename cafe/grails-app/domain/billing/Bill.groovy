@@ -4,6 +4,7 @@ import user.Employee
 
 class Bill {
 
+    int billNumber = 100
     static belongsTo = [employee: Employee]
     Date orderDate
     double amount
@@ -24,6 +25,7 @@ class Bill {
 
     }
     def beforeInsert = {
+        billNumber +=1
         dateCreated = new Date()
 
     }
@@ -33,5 +35,6 @@ class Bill {
             updateCount++;
         }
     }
+
 
 }

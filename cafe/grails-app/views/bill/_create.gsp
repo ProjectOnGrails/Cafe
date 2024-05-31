@@ -1,35 +1,16 @@
-<g:form action="add">
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <g:submitButton class="btn btn-primary" name="Create" value="Submit"/>
-    </div>
-</g:form>
+<g:each in="${itemList}" var="item">
+    <tr>
+        <td>${itemList.indexOf(item)}</td>
+        <td>${item.name}</td>
+        <td id="price">${item.discountedPrice}</td>
+        <td>
+            <input type="number" id="quantity" value="1"/>
+        </td>
+        <td>${item.discountedPrice}</td>
+        <td>
+            <a href="${createLink(controller:'bill',action:'cancelItem',params:[id:itemList.indexOf(item)])}">
+                <i class="bi bi-x"></i>
+            </a>
+        </td>
+    </tr>
+</g:each>

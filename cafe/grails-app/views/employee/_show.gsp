@@ -1,17 +1,4 @@
 
-<div>
-    <table class="table-striped" id="myTable">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Email</th>
-            <th scope="col">Contact No.</th>
-            <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
         <g:each in="${employees}" var="employee">
             <tr>
                 <td>${employee.id}</td>
@@ -27,6 +14,3 @@
                 </td>
             </tr>
         </g:each>
-        </tbody>
-    </table>
-</div>

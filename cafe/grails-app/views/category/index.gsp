@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container" style="margin: 3rem">
+<div class="container" style="margin: 1rem">
     <g:render template="/Shared/message"/>
 
 %{--Category create start--}%
@@ -30,7 +30,21 @@
 %{--    Category create end--}%
 
 <!-- Data Table start-->
-<g:render template="show"/>
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Item Count</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <g:render template="show"/>
+        </tbody>
+    </table>
+
 %{--Date Table end--}%
 
 %{--    Details modal start--}%
