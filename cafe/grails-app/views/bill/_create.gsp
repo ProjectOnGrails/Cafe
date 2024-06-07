@@ -4,7 +4,11 @@
         <td>${item.name}</td>
         <td id="price">${item.discountedPrice}</td>
         <td>
-            <input type="number" id="quantity" value="1"/>
+            <div class="input-group">
+                <button class="btn btn-outline-primary" type="button" id="decrease">-</button>
+                <input type="text" class="form-control" placeholder="" value="1" min="1" id="counterInput">
+                <button class="btn btn-outline-primary" type="button" id="increase">+</button>
+            </div>
         </td>
         <td>${item.discountedPrice}</td>
         <td>

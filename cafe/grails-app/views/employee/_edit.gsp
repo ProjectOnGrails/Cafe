@@ -1,25 +1,41 @@
-
+<%@ page import="user.Employee" %>
 
                 <g:form action="update" id="${employeeInstance.id}">
-                    <div class="modal-body">
-                        <div id="employee">
-                            <label>Employee Id:</label>
-                            <g:textField type="number" name="id" value= '${employeeInstance.id}' disabled="disabled"/><br/>
-                            <br/>
-                            <label>Name:</label>
-                            <g:textField type="number"  name="name" value= '${employeeInstance.name}'/><br/>
-                            <br/>
-                            <label>Gender:</label>
-                            <g:textField type="number"  name="gender" value= '${employeeInstance.gender}'/><br/>
-                            <br/>
-                            <label>Email:</label>
-                            <g:textField type="number"  name="email" value= '${employeeInstance.email}'/><br/>
-                            <br/>
-                            <label>Number:</label>
-                            <g:textField type="number"  name="number" value= '${employeeInstance.number}'/><br/>
-                            <br/>
+                    <div class="row g-2 mb-2">
+                        <div class="col-3">
+                            <div class="form-floating">
+                                <g:textField type="number" class="form-control"  name="id" disabled="disabled" value= '${employeeInstance.id}'/>
+                                <label>Id</label>
+                            </div>
                         </div>
-                        <br>
+                        <div class="col">
+                            <div class="form-floating">
+                                <g:textField type="number" class="form-control" name="name" value= '${employeeInstance.name}'/>
+                                <label>Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <g:select class="form-control" name="gender" from="${Employee.Gender.values()}" value= '${employeeInstance.gender}'/>
+                                <label>Gender</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <g:textField type="number" class="form-control" name="number" value= '${employeeInstance.number}'/>
+                                <label>Contact Number</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="form-floating">
+                                <g:textField type="email" class="form-control" name="email" value= '${employeeInstance.email}'/>
+                                <label>Email</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

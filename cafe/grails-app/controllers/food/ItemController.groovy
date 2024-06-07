@@ -19,9 +19,10 @@ class ItemController {
     }
 
     def create() {
+        Item itemInstance = new Item(params)
         try {
             println ("this is params value:${params}")
-            Item itemInstance = new Item(params)
+
             def category = Category.findById(params.category.id)
             itemInstance.category = category
             itemInstance.image = params.image.bytes

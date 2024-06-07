@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>role</title>
+    <title>Category</title>
     <meta name="layout" content="main">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -9,42 +9,48 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container" style="margin: 1rem">
+<div class="container text text-center">
     <g:render template="/Shared/message"/>
-
-%{--Category create start--}%
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" id="addCategory" style="margin-bottom: 2rem">
-        Add Category
-    </button>
-    <div class="modal fade" id="categoryModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="categoryModalLabel">Add Category</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    %{--Category create start--}%
+    <div class="row mt-3">
+        <div class="col">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" id="addCategory" style="margin-bottom: 2rem">
+                Add Category
+            </button>
+            <div class="modal fade" id="categoryModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="categoryModalLabel">Add Category</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="categoryCreate"></div>
+                    </div>
                 </div>
-                <div class="modal-body" id="categoryCreate"></div>
             </div>
         </div>
     </div>
-%{--    Category create end--}%
+    %{--    Category create end--}%
 
-<!-- Data Table start-->
-    <table class="table table-striped" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Item Count</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <g:render template="show"/>
-        </tbody>
-    </table>
-
+    <!-- Data Table start-->
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped" id="myTable">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Item Count</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <g:render template="show"/>
+                </tbody>
+            </table>
+        </div>
+    </div>
 %{--Date Table end--}%
 
 %{--    Details modal start--}%

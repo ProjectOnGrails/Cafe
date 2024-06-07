@@ -1,14 +1,18 @@
 <g:form action="create">
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Name</label>
-        <div class="col-sm-9">
-            <g:textField  name="name" required="true"/><br/>
+    <div class="row mb-2">
+        <div class="col">
+            <div class="form-floating">
+                <g:textField  name="name" class="form-control" required="true"/>
+                <label>Name</label>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Description</label>
-        <div class="col-sm-9">
-            <g:textArea  name="description" required="true"/><br/>
+    <div class="row mb-2">
+        <div class="col">
+            <div class="form-floating">
+                <g:textArea  name="description" class="form-control" required="true"/>
+                <label>Description</label>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

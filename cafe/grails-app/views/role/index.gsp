@@ -9,26 +9,51 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-    <div class="container" style="margin: 1rem">
+    <div class="container text-center" style="margin: 1rem">
         <g:render template="/Shared/message"/>
 
-%{--        Role create start--}%
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addRole" style="margin-bottom: 2rem">
-            Add Role
-        </button>
-        <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Role</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        %{--Role create start--}%
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="addRole" style="margin-bottom: 2rem">
+                    Add Role
+                </button>
+                <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Role</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <g:render template="create"/>
+                            </div>
+                        </div>
                     </div>
-                    <g:render template="create"/>
                 </div>
             </div>
         </div>
-%{--        Role create end--}%
+        %{--    Role create end--}%
 
+        <!--Role data table start-->
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Authority</th>
+                        <th scope="col">Update Count</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <g:render template="show"/>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Role data table end-->
 
         %{--Role edit start--}%
         <div class="modal fade" id="editModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -43,22 +68,6 @@
             </div>
         </div>
         %{--Role edit end--}%
-
-        <!--Role data table start-->
-        <table class="table table-striped" id="myTable">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Authority</th>
-                    <th scope="col">Update Count</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            <g:render template="show"/>
-            </tbody>
-        </table>
-        <!--Role data table end-->
     </div>
 <script>
     $(document).ready(function () {

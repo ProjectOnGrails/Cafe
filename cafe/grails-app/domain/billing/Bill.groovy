@@ -7,7 +7,7 @@ class Bill {
     int billNumber = 100
     static belongsTo = [employee: Employee]
     Date orderDate
-    double amount
+    double amount = 0
     static hasOne = [cancellationRequest: OrderCancellation]
 
 

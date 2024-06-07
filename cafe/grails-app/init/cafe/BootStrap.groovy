@@ -20,6 +20,7 @@ class BootStrap {
         new Requestmap(url: '/bill/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/dashboard/**', configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/ordercancellation/**', configAttribute: 'ROLE_ADMIN').save()
+        new Requestmap(url: '/orderitem/**', configAttribute: 'ROLE_ADMIN').save()
         springSecurityService.clearCachedRequestmaps()
         initialService.firstEntry()
 

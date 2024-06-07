@@ -1,5 +1,7 @@
 package food
 
+import billing.OrderItem
+
 class Item {
     String name
     double price
@@ -7,6 +9,7 @@ class Item {
     double discountedPrice
     byte[] image
     static belongsTo = [category: Category]
+
     int updateCount = 0
 
     Date dateCreated

@@ -6,7 +6,7 @@ import grails.gorm.transactions.Transactional
 class ItemService {
 
     boolean save(Item itemInstance){
-        if(itemInstance.save()){
+        if(itemInstance.save(failOnError:true)){
             return true
         }else{
             return false

@@ -1,21 +1,25 @@
 
 <g:form action="update" id="${category.id}">
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Id</label>
-        <div class="col-sm-9">
-            <g:textField  name="id" value="${category.id}" disabled="true"/><br/>
+    <div class="row mb-2">
+        <div class="col-3">
+            <div class="form-floating">
+                <g:textField class="form-control"  name="id" value="${category.id}" disabled="true"/>
+                <label>Id</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating">
+                <g:textField class="form-control" name="Name" value="${category.name}"/><br/>
+                <label>Name</label>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Name</label>
-        <div class="col-sm-9">
-            <g:textField  name="Name" value="${category.name}"/><br/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Description</label>
-        <div class="col-sm-9">
-            <g:textArea  name="description" value="${category.description}"/><br/>
+    <div class="row mb-2">
+        <div class="col">
+            <div class="form-floating">
+                <g:textArea class="form-control" name="description" value="${category.description}"/><br/>
+                <label>Description</label>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

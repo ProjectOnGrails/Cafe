@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
-<div class="container" style="margin: 1rem">
+<div class="container text-center">
 
     <g:render template="/Shared/message"/>
-
-%{--    Employee create modal start--}%
-    <div>
+    %{--    Employee create modal start--}%
+<div class="row mt-3">
+    <div class="col">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#employeeModal" id="addEmployee" style="margin-bottom: 2rem">
             Add Employee
         </button>
@@ -23,16 +23,36 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="employeeModalLabel">Add Employee</h1>
-                        <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="employeeCreate"></div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 %{--    Employee create model end--}%
+
+%{--    Employee data table start--}%
+<div class="row">
+    <table class="table table-striped" id="myTable">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact No.</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <g:render template="show"/>
+        </tbody>
+    </table>
+</div>
+    %{--    Employee data table end--}%
+
 
 %{--Employee details start--}%
     <div class="modal fade" id="detailModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -42,7 +62,8 @@
                     <h1 class="modal-title fs-5" id="detailModalLabel">Employee Details</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="employeeDetail"></div>
+                <div class="modal-body" id="employeeDetail">
+                </div>
             </div>
         </div>
     </div>
@@ -62,23 +83,7 @@
     </div>
     %{--    Employee edit start--}%
 
-%{--    Employee data table start--}%
-    <table class="table table-striped" id="myTable">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Email</th>
-                <th scope="col">Contact No.</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <g:render template="show"/>
-        </tbody>
-    </table>
-%{--    Employee data table end--}%
+
 </div>
 <script>
     $(document).ready(function () {
@@ -94,10 +99,6 @@
                 $('#employeeModal').modal('show');
             },
         });
-    });
-
-    $("#btnClose").click(function(){
-        window.location.reload();
     });
 
     $(".viewBtn").click(function() {

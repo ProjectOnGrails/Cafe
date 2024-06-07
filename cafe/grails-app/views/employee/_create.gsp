@@ -1,47 +1,54 @@
 <%@ page import="user.Employee" %>
 
 <g:form action="create">
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Name:</label>
-        <div class="col-sm-9">
-            <g:textField class="form-control" name="name"/><br/>
+    <div class="row g-2 mb-2">
+        <div class="col">
+            <div class="form-floating">
+                <g:textField class="form-control" name="name"/>
+                <label>Name</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating">
+                <g:select class="form-control" name="gender" from="${Employee.Gender.values()}" noSelection="['': 'Select a gender...']"/>
+                <label>Gender</label>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Gender</label>
-        <div class="col-sm-9">
-            <g:select class="form-control" name="gender" from="${Employee.Gender.values()}"/><br/>
+    <div class="row mb-2">
+        <div class="col">
+            <div class="form-floating">
+                <g:textField type="email" class="form-control" name="email"/>
+                <label>Email</label>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Email:</label>
-        <div class="col-sm-9">
-            <g:field class="form-control" type="email" name="email"/><br/>
+    <div class="row g-2 mb-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <g:textField class="form-control" name="username"/>
+                <label>Username</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <g:field type="password" class="form-control" name="password"/>
+                <label>Password</label>
+            </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Number:</label>
-        <div class="col-sm-9">
-            <g:field class="form-control" type="number" name="number"/><br/>
+    <div class="row g-2 mb-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <g:field class="form-control" type="number" name="number"/>
+                <label>Contact Number</label>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Username:</label>
-        <div class="col-sm-9">
-            <g:field class="form-control" name="username"/><br/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Employee Password:</label>
-        <div class="col-sm-9">
-            <g:field class="form-control" name="password"/><br/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-sm-6 col-form-label">Assign Role:</label>
-        <div class="col-sm-9">
-            <g:select name="roleId" from="${roles}" optionKey="id" optionValue="authority" noSelection="['': 'Select a role...']"/>
-            <br/>
+        <div class="col-md">
+            <div class="form-floating">
+                <g:select name="roleId" class="form-control" from="${roles}" optionKey="id" optionValue="authority" noSelection="['': 'Select a role...']"/>
+                <label>Assign Role</label>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

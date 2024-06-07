@@ -27,4 +27,6 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/favicon.ico', filters: 'none'],
 	[pattern: '/**',             filters: 'JOINED_FILTERS']
 ]
+grails.plugin.springsecurity.logout.postOnly = false // Allow both POST and GET requests to logout
+grails.plugin.springsecurity.logout.successUrl = '/login/auth' // Redirect URL after logout
 

@@ -7,12 +7,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <style>
+    #counterInput {
+        width: 10px; /* Adjust this value to set the desired width */
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
 <div class="container text-center" style="margin: 1rem">
     <g:render template="/Shared/message"/>
     <div class="row">
-        <div class="col-7">
+        <div class="col-6">
             <h3>Select Category</h3>
             %{--Category List show start--}%
             <div class="d-grid gap-2 d-md-block">
@@ -113,6 +119,19 @@
 
 
     })
+    document.getElementById('decrease').addEventListener('click', function() {
+        let input = document.getElementById('counterInput');
+        let currentValue = parseInt(input.value);
+        if (currentValue > 1) {
+            input.value = currentValue - 1;
+        }
+    });
+
+    document.getElementById('increase').addEventListener('click', function() {
+        let input = document.getElementById('counterInput');
+        let currentValue = parseInt(input.value);
+        input.value = currentValue + 1;
+    });
     $("#addBill").click(function(){
         $.ajax({
             url: "${createLink(controller:'bill',action:'createBill')}",
