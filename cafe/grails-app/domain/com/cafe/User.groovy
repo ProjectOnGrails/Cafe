@@ -1,5 +1,6 @@
 package com.cafe
 
+import billing.Bill
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
@@ -18,6 +19,7 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
     static belongsTo = [employee:Employee]
+    static  hasMany = [bill: Bill]
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }

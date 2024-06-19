@@ -14,7 +14,7 @@ class Employee {
     String email
     long number
     int joinedDays = 0
-    static  hasMany = [bill: Bill]
+
 
     Date dateCreated
     Date lastUpdated
@@ -31,7 +31,7 @@ class Employee {
         user nullable: true
         updatedBy nullable: true
         lastUpdated nullable: true
-        bill nullable: true
+
     }
     def beforeInsert = {
         dateCreated = new Date()

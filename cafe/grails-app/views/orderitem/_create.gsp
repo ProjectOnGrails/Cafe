@@ -19,5 +19,8 @@
             </a>
         </td>
     </tr>
-
 </g:each>
+<script>
+    var abc = "${total}"
+    $("#grandTotal").val(abc)
+</script>

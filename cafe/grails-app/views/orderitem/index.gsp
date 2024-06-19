@@ -3,10 +3,6 @@
 <head>
     <title>Order</title>
     <meta name="layout" content="main">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 </head>
 <body>
 <div class="container text-center">
@@ -51,7 +47,7 @@
             </div>
         </div>
         <div class="col mt-3 border">
-            <h3>Bill - ${bill.billNumber}</h3>
+            <h3>Bill - ${bill}</h3>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="price">
                     <span class="text-danger">${user.username}</span>
@@ -63,40 +59,59 @@
                 </div>
             </div>
             <hr/>
-            <div class="table-responsive overflow-auto">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <g:render template="create" model="[gtotal: total]" />
+            <g:form controller="bill" action="submitBill">
+                <div class="table-responsive overflow-auto">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <g:render template="create"/>
                         <span>${total}</span>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <span>Grant Total:</span>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col">
-                    <g:field class="text-center float-right" id="grandTotal" type="number" name="amount" value="${total}" />
+                <div class="row">
+                    <div class="col">
+                        <span>Grant Total:</span>
+                    </div>
+                    <div class="col">
+                        <g:field class="text-center float-right" id="grandTotal" type="number" name="amount" value="${total}"/>
+                    </div>
                 </div>
-            </div>
-            <hr/>
-            <div class="mb-2">
-                <a class="btn btn-secondary" href="${createLink(controller:'orderitem',action:'cancelOrder')}" role="button">Cancel</a>
-                <a class="btn btn-primary" href="${createLink(controller:'orderitem',action:'submitOrder')}" role="button">Submit</a>
-            </div>
+                <hr/>
+                <div class="mb-2">
+                    <a class="btn btn-secondary" href="${createLink(controller:'orderitem',action:'cancelOrder')}" role="button">Cancel</a>
+                    <button class="btn btn-primary" type="submit" role="button">Submit</button>
+                </div>
+            </g:form>
+
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped" id="myTable">
+                <thead>
+                <tr>
+                    <th scope="col">Bill No.</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <g:render template="show"/>
+                </tbody>
+            </table>
+        </div>
+    </div>
 <script>
     $(".addItem").click(function(){
         var id = $(this).data('order-id');

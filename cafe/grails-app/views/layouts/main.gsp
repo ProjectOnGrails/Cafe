@@ -10,6 +10,10 @@
     <g:layoutHead/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <style>
     .nav-link.active {
         color: white !important; /* Text color when active */
@@ -69,34 +73,41 @@
                         </a>
                     </li>
                 </ul>
-                <div class="sidebar-footer mt-5">
-                    <sec:ifLoggedIn>
-                        <div class="sidebar-bottom">
-                            <div class="username"><i class="fas fa-user"></i>
-                                <i class="bi bi-person-fill me-2"></i>
-                                <span class="d-none d-sm-inline"><sec:username/>!</span>
-                            </div>
-                            <g:link controller="logout" action="index">
-                                <i class="bi bi-box-arrow-right me-2"></i>
-                                <span class="d-none d-sm-inline">Logout</span>
-                            </g:link>
+                <ul class="nav nav-pills flex-column mt-auto">
+                    <li class="nav-item">
+                        <div class="sidebar-footer">
+                            <sec:ifLoggedIn>
+                                <div class="sidebar-bottom">
+                                    <div class="username"><i class="fas fa-user"></i>
+                                        <i class="bi bi-person-fill me-2"></i>
+                                        <span class="d-none d-sm-inline"><sec:username/>!</span>
+                                    </div>
+                                    <g:link controller="logout" action="index">
+                                        <i class="bi bi-box-arrow-right me-2"></i>
+                                        <span class="d-none d-sm-inline">Logout</span>
+                                    </g:link>
+                                </div>
+                            </sec:ifLoggedIn>
+                            <sec:ifNotLoggedIn>
+                                <a href="/login/auth">
+                                    <i class="bi bi-person-fill"></i>
+                                    <span class="d-none d-sm-inline">LogIn</span>
+                                </a>
+                            </sec:ifNotLoggedIn>
                         </div>
-                    </sec:ifLoggedIn>
-                    <sec:ifNotLoggedIn>
-                        <a href="/login/auth">
-                            <i class="bi bi-person-fill"></i>
-                            <span class="d-none d-sm-inline">LogIn</span>
-                        </a>
-                    </sec:ifNotLoggedIn>
-                </div>
+                    </li>
+                </ul>
             </div>
             <div class="col">
                 <g:layoutBody/>
             </div>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
 </script>
 </body>
 </html>

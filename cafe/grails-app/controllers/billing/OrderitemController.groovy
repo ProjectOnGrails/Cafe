@@ -1,5 +1,6 @@
 package billing
 
+import com.cafe.User
 import food.Category
 import food.Item
 
@@ -10,24 +11,32 @@ def springSecurityService
 
 
     def index() {
+        User user = springSecurityService.currentUser
+        List<Bill> bills = Bill.findAllByUser(user)
+
         def id = params.id
-        Bill bill = new Bill()
+        def maxBillNumber = Bill.createCriteria().get {
+            projections {
+                max 'billNumber'
+            }
+        }
+        def billNumber = (maxBillNumber ?: 0) + 1
         List<Category> categories = Category.list()
         def date = new Date()
-        def user = springSecurityService.currentUser
         def totalSum = orderItems.sum { (it.item?.discountedPrice ?: 0) * (it.quantity)}
 
 
         if(id!=null){
             Category categoryInstance = Category.findById(id)
             List<Item> items = Item.findAllByCategory(categoryInstance)
-            [bill:bill,date:date,user:user,categories: categories,items: items,orderItems: orderItems,total:totalSum]
+            [bill:billNumber,date:date,user:user,categories: categories,items: items,orderItems: orderItems,total:totalSum,bills:bills]
         }else{
             Category categoryInstance = Category.findById(1)
             List<Item> items = Item.findAllByCategory(categoryInstance)
-            [bill:bill,date:date,user:user,categories: categories,items: items,orderItems: orderItems,total:totalSum]
+            [bill:billNumber,date:date,user:user,categories: categories,items: items,orderItems: orderItems,total:totalSum,bills:bills]
         }
     }
+
     def addItem(){
         int id = params.int('id')
         Item itemInstance = Item.findById(id)
@@ -77,5 +86,24 @@ def springSecurityService
         Item itemInstance =Item.findById(params.id)
         response.outputStream << itemInstance.image
         response.outputStream.flush()
+    }
+    def saveItem(){
+        def billNum = params.int('billId')
+        def bill = Bill.findByBillNumber(billNum)
+
+        orderItems.each {orderItem ->
+            OrderItem orderItemInstance = new OrderItem()
+
+            orderItemInstance.bill = bill
+            orderItemInstance.item = orderItem.item
+            orderItemInstance.quantity = orderItem.quantity
+            orderItemInstance.amount = orderItem.amount
+
+            orderItemInstance.save(failOnError:true)
+        }
+        orderItems.clear()
+        redirect(view: 'index')
+
+
     }
 }
