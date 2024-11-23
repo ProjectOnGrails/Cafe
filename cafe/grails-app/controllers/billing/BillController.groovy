@@ -8,9 +8,8 @@ def springSecurityService
 
 
     def index() {
-
-
     }
+
     @Transactional
     def submitBill(){
         Bill billInstance = new Bill(params)
@@ -18,6 +17,13 @@ def springSecurityService
         billInstance.save(failOnError:true,flush:true)
         def dataToPass = [billId: billInstance.billNumber]
         redirect(controller:'orderitem',action: 'saveItem',params:dataToPass)
+    }
+
+    def delete(){
+        int id = params.int('id')
+        Bill billInstance = Bill.findById(id)
+        billInstance.delete(failOnError: true)
+        redirect(controller:'orderitem',action: 'index')
     }
 
 }

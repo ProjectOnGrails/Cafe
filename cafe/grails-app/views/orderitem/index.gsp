@@ -92,10 +92,10 @@
                     <button class="btn btn-primary" type="submit" role="button">Submit</button>
                 </div>
             </g:form>
-
         </div>
     </div>
-    <div class="row">
+    <hr/>
+    <div class="row mb-2">
         <div class="col">
             <table class="table table-striped" id="myTable">
                 <thead>
